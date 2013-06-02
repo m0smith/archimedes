@@ -13,6 +13,15 @@
     (e/remove! a)
     (is (=  nil (e/find-by-id a-id)))))
 
+(deftest test-connect!
+  (g/use-clean-graph!)
+  (let [u (v/create-with-id! 100)
+        w (v/create-with-id! 101)
+        a (e/connect! u :test w)
+        a-id (e/id-of a)]
+    (e/remove! a)
+    (is (= nil (e/find-by-id a-id)))))
+
 (deftest test-simple-property-mutation
   (g/use-clean-graph!)
   (let [v1 (v/create-with-id! 100 {:name "v1"})
